@@ -8,9 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from config import STATIC_FILES_PATH
 from apis.apis import router as api_router
 
-
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.on_event("startup")
@@ -22,6 +20,9 @@ async def startup_event():
     # Create static folder
     if not os.path.exists(STATIC_FILES_PATH):
         os.makedirs(STATIC_FILES_PATH)
+
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 app.include_router(api_router)
 
