@@ -1,4 +1,5 @@
 # Packages
+from .roles import RolesModel
 from .books import BooksModel
 from .users import UsersModel
 
